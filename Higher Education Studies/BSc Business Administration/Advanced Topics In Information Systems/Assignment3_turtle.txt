@@ -1,0 +1,48 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX pron: <http://www.ontotext.com/proton/protonext#>
+PREFIX db-owl: <http://dbpedia.org/ontology/>
+PREFIX teach: <http://linkedscience.org/teach/ns#>
+PREFIX swpo: <http://sw-portal.deri.org/ontologies/swportal#>
+
+#we define Symeon
+
+ex:Symeon.ttl a foaf:PersonalProfileDocument ;
+foaf:maker ex:Symeon;
+foaf:primaryTopic ex:Symeon.
+
+#We will give the attributes for Symeon.
+
+ex:Symeon 	rdf:type foaf:Person;
+			foaf:firstName "Symeon";
+
+			#upper_row_in_diagram.
+			foaf:familyName "KOKOVIDIS"	;	
+			foaf:gender "male";
+			pron:birthDate "31-03-94"
+			db-owl:birthPlace <http://dbpedia.org/page/Greece>;
+			db-owl:citizenship <http://dbpedia.org/page/European_Union>;
+
+			#right_column_in_diagram.
+			ptop:locatedIn <http://dbpedia.org/page/Thessaloniki>;
+			foaf:age "22";
+			<http://www.w3.org/2006/vcard/ns#email> <ba1361@uom.edu.gr>;
+			foaf:holdsAccount "www.linkedin.com/in/symeon-kokovidis";
+
+			#left_column_and_the_rest.
+			teach:Course <http://127.0.0.1/uom/ba/curriculum/7sem/Special_Issues_IS>;
+			swpo:hasLecturer <http://127.0.0.1/uom/ba/personnel/prof/tarampanis>;
+			swpo:hasLecturer <http://127.0.0.1/uom/ba/personnel/lect/kalampokis>;
+
+			teach:studentGroup <http://127.0.0.1/uom/postgraduate/students>;
+
+			#the node "Business Administration (postgraduates students)" belongs to the superset of "Postgraduates @ UOM".
+			#From the perspective of student we can define that is also a member of Business Administration Students, seperately.
+
+			<http://purl.org/NET/scovo#dataset> <http://127.0.0.1/uom/ba/students>.
+
+
+
+
+#we use "" for age, email address? when we <> and when "" for such elements?.
+#Can we relate linkedIn's API with our code? eg https://api.linkedin.com/v1/people/259478536.

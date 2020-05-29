@@ -1,0 +1,38 @@
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/concept#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?Year ?Percent_of_renewable ?Metric_Tons_of_CO2eq ?Transport_Emissions_Metric_Tons_of_CO2eq
+WHERE {
+?a qb:dataSet <http://statistics.gov.scot/data/renewable-electricity>;
+	<http://purl.org/linked-data/sdmx/2009/dimension#refArea> <http://statistics.gov.scot/id/statistical-geography/S92000003>;
+	<http://statistics.gov.scot/def/measure-properties/ratio> ?Percent_of_renewable;
+	<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> ?dummy1.
+?dummy1 rdfs:label ?Year.
+
+?b qb:dataSet <http://statistics.gov.scot/data/greenhouse-gas>;
+<http://purl.org/linked-data/sdmx/2009/dimension#refArea> <http://statistics.gov.scot/id/statistical-geography/S92000003>;
+<http://statistics.gov.scot/def/measure-properties/count> ?Metric_Tons_of_CO2eq;
+#We link the second dataset to the ref_periods of the first one!!!#
+<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> ?dummy1.
+
+?c qb:dataSet <http://statistics.gov.scot/data/greenhouse-gas-emissions-by-source-sector>;
+<http://purl.org/linked-data/sdmx/2009/dimension#refArea> <http://statistics.gov.scot/id/statistical-geography/S92000003>;
+<http://statistics.gov.scot/def/dimension/greenhouseGasSourceSector> <http://statistics.gov.scot/def/concept/greenhouse-gas-source-sector/transport-excluding-international-aviation-and-shipping>;
+<http://statistics.gov.scot/def/dimension/pollutant> <http://statistics.gov.scot/def/concept/pollutant/co2>;
+<http://statistics.gov.scot/def/measure-properties/count> ?Transport_Emissions_Metric_Tons_of_CO2eq;
+#We link the third dataset to the ref_periods of the first one!!!#
+<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> ?dummy1.
+
+
+
+}
+ORDER BY ASC(?Year)
+LIMIT 100

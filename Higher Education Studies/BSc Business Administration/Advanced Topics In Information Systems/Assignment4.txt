@@ -1,0 +1,41 @@
+
+Question 1: The names in English and birth & death dates of all actors who played James Bond
+
+Link:
+https://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=SELECT+DISTINCT+str%28%3Fname%29+as+%3FName+%3Fbirth+%3Fdeath_date%0D%0AWHERE+%7B%0D%0A+dbr%3AJames_Bond_filmography+dbo%3Aportrayer+%3Factor+.%0D%0A+%3Factor+rdfs%3Alabel+%3Fname+.%0D%0A+%3Factor+dbo%3AbirthDate+%3Fbirth%0D%0A+OPTIONAL+%7B+%3Factor+dbo%3AdeathDate+%3Fdeath_date+%7D%0D%0A+FILTER+langMatches%28lang%28%3Fname%29%2C+%22EN%22%29%7D%0D%0A%0D%0A%0D%0ALIMIT+200&format=text%2Fhtml&CXML_redir_for_subjs=121&CXML_redir_for_hrefs=&timeout=30000&debug=on
+
+Query:
+
+SELECT DISTINCT str(?name) as ?Name ?birth ?death_date
+WHERE {
+ dbr:James_Bond_filmography dbo:portrayer ?actor .
+ ?actor rdfs:label ?name .
+ ?actor dbo:birthDate ?birth
+ OPTIONAL { ?actor dbo:deathDate ?death_date }
+ FILTER langMatches(lang(?name), "EN")
+}
+LIMIT 200
+
+
+——————————————————————————
+Question 2 : The names of companies that have more than 400000 employees. Order the results by higher number of employees.
+
+Link:
+https://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=SELECT+DISTINCT+%3Fcompany+%3Femp+%0D%0AWHERE+%7B+%3Fcompany+dbo%3AnumberOfEmployees+%3Femp%0D%0AFILTER%28%3Femp+%3E+400000%29+%0D%0A%7D%0D%0AORDER+BY+DESC%28%3Femp%29%0D%0A%0D%0ALIMIT+500&format=text%2Fhtml&CXML_redir_for_subjs=121&CXML_redir_for_hrefs=&timeout=30000&debug=on
+
+
+Query:
+SELECT DISTINCT ?company ?emp 
+WHERE { 
+?company dbo:numberOfEmployees ?emp
+FILTER(?emp > 400000) 
+}
+ORDER BY DESC(?emp)
+LIMIT 500
+
+
+——————————————————————————
+
+For the course of Special Issues on Information Systems
+Kokovidis Symeon 61/13 ba1361@uom.edu.gr
+

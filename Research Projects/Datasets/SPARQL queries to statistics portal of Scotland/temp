@@ -1,0 +1,278 @@
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/concept#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT  ?area
+
+?ratio_mothers_under_19_2012
+?atio_mothers_over_35_2012
+?ante_natal_smokers
+?ante_natal_formerSmokers_2012
+?ante_natal_neverSmokers_2012
+# ?breastf_first_visit_2012
+# ?breastf_excl_first_visit_2012
+# ?breastf_6to8week_2012
+# ?breastf_excl_6to8week_2012
+
+#
+
+
+ # ?count_births ?count_deaths ?population ?ratio_dis_allow ?house_sales_prices_mean ?count_breastf ?count_job_seekers
+WHERE {
+
+#assign ref area
+?a <http://statistics.data.gov.uk/def/statistical-entity#code> <http://statistics.gov.scot/id/statistical-entity/S01>;
+   rdfs:label ?area.
+
+# age of first time mothers - Number and percentage of first time mothers who are aged 19 and under, or 35 and over.
+  #19and under
+  ?v1 qb:dataSet <http://statistics.gov.scot/data/age-at-first-birth>;
+    <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/19-and-under>;
+    <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/gregorian-interval/2012-04-01T00:00:00/P3Y>;
+    <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+    <http://statistics.gov.scot/def/measure-properties/ratio> ?ratio_mothers_under_19_2012.
+
+    #35 and over
+    ?v2 qb:dataSet <http://statistics.gov.scot/data/age-at-first-birth>;
+      <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/35-and-over>;
+      <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/gregorian-interval/2012-04-01T00:00:00/P3Y>;
+      <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+      <http://statistics.gov.scot/def/measure-properties/ratio> ?ratio_mothers_over_35_2012.
+
+
+# Ante natal smokers
+#   smokers
+  ?v3 qb:dataSet <http://statistics.gov.scot/data/smoking-at-booking>;
+  <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/gregorian-interval/2011-01-01T00:00:00/P3Y>;
+  <http://statistics.gov.scot/def/dimension/populationGroup>  <http://statistics.gov.scot/def/concept/population-group/current-smoker>;
+  <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+  <http://statistics.gov.scot/def/measure-properties/ratio> ?ante_natal_smokers.
+
+  #former smokers
+  ?v4 qb:dataSet <http://statistics.gov.scot/data/smoking-at-booking>;
+  <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/gregorian-interval/2011-01-01T00:00:00/P3Y>;
+  <http://statistics.gov.scot/def/dimension/populationGroup> <http://statistics.gov.scot/def/concept/population-group/former-smoker>;
+  <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+  <http://statistics.gov.scot/def/measure-properties/ratio> ?ante_natal_formerSmokers_2012.
+# #
+  # never smokers
+  ?v5 qb:dataSet <http://statistics.gov.scot/data/smoking-at-booking>;
+  <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/gregorian-interval/2011-01-01T00:00:00/P3Y>;
+  <http://statistics.gov.scot/def/dimension/populationGroup> <http://statistics.gov.scot/def/concept/population-group/never-smoked>;
+  <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+  <http://statistics.gov.scot/def/measure-properties/ratio> ?ante_natal_neverSmokers_2012.
+
+
+  #breastfeeding
+  #breastfeeding (not exclusively) data collection first visit
+# ?v6 qb:dataSet <http://statistics.gov.scot/data/breastfeeding>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# <http://statistics.gov.scot/def/dimension/populationGroup> <http://statistics.gov.scot/def/concept/population-group/breastfed>;
+# <http://statistics.gov.scot/def/dimension/breastfeedingDataCollectionTime> <http://statistics.gov.scot/def/concept/breastfeeding-data-collection-time/first-visit>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <http://statistics.gov.scot/def/measure-properties/ratio> ?breastf_first_visit_2012.
+# #
+# #
+# ?v7 qb:dataSet <http://statistics.gov.scot/data/breastfeeding>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# <http://statistics.gov.scot/def/dimension/breastfeedingDataCollectionTime> <http://statistics.gov.scot/def/concept/breastfeeding-data-collection-time/first-visit>;
+# <http://statistics.gov.scot/def/dimension/populationGroup> <http://statistics.gov.scot/def/concept/population-group/exclusively-breastfed>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <http://statistics.gov.scot/def/measure-properties/ratio> ?breastf_excl_first_visit_2012.
+#
+# ?v8 qb:dataSet <http://statistics.gov.scot/data/breastfeeding>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# <http://statistics.gov.scot/def/dimension/breastfeedingDataCollectionTime> <http://statistics.gov.scot/def/concept/breastfeeding-data-collection-time/6-to-8-week-review>;
+# <http://statistics.gov.scot/def/dimension/populationGroup> <http://statistics.gov.scot/def/concept/population-group/breastfed>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <http://statistics.gov.scot/def/measure-properties/ratio> ?breastf_6to8week_2012.
+#
+# ?v9 qb:dataSet <http://statistics.gov.scot/data/breastfeeding>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# <http://statistics.gov.scot/def/dimension/breastfeedingDataCollectionTime> <http://statistics.gov.scot/def/concept/breastfeeding-data-collection-time/6-to-8-week-review>;
+# <http://statistics.gov.scot/def/dimension/populationGroup> <http://statistics.gov.scot/def/concept/population-group/exclusively-breastfed>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <http://statistics.gov.scot/def/measure-properties/ratio> ?breastf_excl_6to8week_2012.
+
+
+# #
+# ?v qb:dataSet <>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod><>;
+# <><>;
+# <><>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <> .
+#
+# #
+# ?v qb:dataSet <>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod><>;
+# <><>;
+# <><>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <>  .
+#
+# #
+# ?v qb:dataSet <>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod><>;
+# <><>;
+# <><>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <>  .
+#
+#
+# #
+# ?v qb:dataSet <>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod><>;
+# <><>;
+# <><>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <>  .
+#
+#
+# #
+# ?v qb:dataSet <>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod><>;
+# <><>;
+# <><>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <>  .
+#
+#
+#
+# #
+# ?v qb:dataSet <>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod><>;
+# <><>;
+# <><>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <>  .
+#
+#
+# #
+# ?v qb:dataSet <>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod><>;
+# <><>;
+# <><>;
+# <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# <>  .
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# #
+# #
+# # #births
+# # ?v1  qb:dataSet <http://statistics.gov.scot/data/births>;
+# #     <http://statistics.gov.scot/def/dimension/gender> <http://statistics.gov.scot/def/concept/gender/all>;
+# #     <http://statistics.gov.scot/def/dimension/timePeriod> <http://statistics.gov.scot/def/concept/time-period/calendar-year>;
+# #     <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #     <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #     <http://statistics.gov.scot/def/measure-properties/count> ?count_births.
+# #
+# #
+# # #count of deaths
+# #   ?c qb:dataSet <http://statistics.gov.scot/data/deaths>;
+# #       <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/all>;
+# #       <http://statistics.gov.scot/def/dimension/causeOfDeath> <http://statistics.gov.scot/def/concept/cause-of-death/all>;
+# #       <http://statistics.gov.scot/def/dimension/gender> <http://statistics.gov.scot/def/concept/gender/all>;
+# #       <http://statistics.gov.scot/def/dimension/year> <http://statistics.gov.scot/def/concept/year/calendar-year>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #       <http://statistics.gov.scot/def/measure-properties/count> ?count_deaths.
+# #
+# #   #population
+# #   ?d qb:dataSet <http://statistics.gov.scot/data/population-estimates-current-geographic-boundaries>;
+# #       <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/all>;
+# #       <http://statistics.gov.scot/def/dimension/sex> <http://statistics.gov.scot/def/concept/sex/all>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #       <http://statistics.gov.scot/def/measure-properties/count> ?count_pop.
+# #
+# #   #ratio breastfeeding
+# #     ?e qb:dataSet <http://statistics.gov.scot/data/breastfeeding>;
+# #        <http://statistics.gov.scot/def/dimension/breastfeedingDataCollectionTime> <http://statistics.gov.scot/def/concept/breastfeeding-data-collection-time/first-visit>;
+# #        <http://statistics.gov.scot/def/dimension/populationGroup> <http://statistics.gov.scot/def/concept/population-group/breastfed>;
+# #        <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #        <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #      	 <http://statistics.gov.scot/def/measure-properties/count> ?count_breastf.
+# #
+# #   #job seeker 2012-Q1
+# #   ?f qb:dataSet <http://statistics.gov.scot/data/job-seekers-allowance>;
+# #       <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/all>;
+# #       <http://statistics.gov.scot/def/dimension/gender> <http://statistics.gov.scot/def/concept/gender/all>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/quarter/2012-Q1>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #       <http://statistics.gov.scot/def/measure-properties/count> ?count_job_seekers.
+# # #
+# # #   #low birthweight 2012-2014
+# # #   ?g qb:dataSet <http://statistics.gov.scot/data/low-birthweight>;
+# # #      <http://statistics.gov.scot/def/dimension/birthWeight> <http://statistics.gov.scot/def/concept/birth-weight/low-weight-births>;
+# # #      <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/gregorian-interval/2012-01-01T00:00:00/P3Y>;
+# # #      <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# # #      <http://statistics.gov.scot/def/measure-properties/ratio> ?ratio_low_birthweight.
+# # #
+# # #   #hospital-admissions ACCIDENTS 2012 (Rate Per 100,000 Population)
+# # #   ?h qb:dataSet <http://statistics.gov.scot/data/hospital-admissions>;
+# # #       <http://statistics.gov.scot/def/dimension/admissionType> <http://statistics.gov.scot/def/concept/admission-type/accidents>;
+# # #       <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/all>;
+# # #       <http://statistics.gov.scot/def/dimension/gender> <http://statistics.gov.scot/def/concept/gender/all>;
+# # #       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #       <http://statistics.gov.scot/def/measure-properties/ratio> ?ratio_hosp__acc_adm.
+# #
+# #   #hospital-admissions PLANNED 2012 (Rate Per 100,000 Population)
+# #   ?i qb:dataSet <http://statistics.gov.scot/data/hospital-admissions>;
+# #       <http://statistics.gov.scot/def/dimension/admissionType> <http://statistics.gov.scot/def/concept/admission-type/elective-planned>;
+# #       <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/all>;
+# #       <http://statistics.gov.scot/def/dimension/gender> <http://statistics.gov.scot/def/concept/gender/all>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #       <http://statistics.gov.scot/def/measure-properties/ratio> ?ratio_hosp_planned_adm.
+# #
+# #   #Fire (Accidental Dwelling Fires Per 100,000 Population)
+# #   ?j qb:dataSet <http://statistics.gov.scot/data/fire>;
+# #       <http://statistics.gov.scot/def/dimension/indicator(fire)> <http://statistics.gov.scot/def/concept/indicator-fire/accidental-dwelling-fires-per-100-000-population>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #       <http://statistics.gov.scot/def/measure-properties/ratio> ?ratio_fires.
+# #
+#   #Disability Living Allowance (Rate Per 100,000)
+#   ?k qb:dataSet <http://statistics.gov.scot/data/disability-living-allowance>;
+#       <http://statistics.gov.scot/def/dimension/age> <http://statistics.gov.scot/def/concept/age/all>;
+#       <http://statistics.gov.scot/def/dimension/gender> <http://statistics.gov.scot/def/concept/gender/all>;
+#       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/quarter/2012-Q1>;
+#       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+#       <http://statistics.gov.scot/def/measure-properties/ratio> ?ratio_dis_allow.
+# #
+# #   #House sales
+# #   ?l qb:dataSet <http://statistics.gov.scot/data/house-sales>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+# #       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+# #       <http://statistics.gov.scot/def/measure-properties/count> ?count_house_sales.
+# #
+#   #House sales Prices
+#   ?m qb:dataSet <http://statistics.gov.scot/data/house-sales-prices>;
+#       <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://reference.data.gov.uk/id/year/2012>;
+#       <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ?a;
+#       <http://statistics.gov.scot/def/measure-properties/mean> ?house_sales_prices_mean
+
+}
+ORDER BY ASC (?area)
