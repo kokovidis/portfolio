@@ -14,15 +14,22 @@ In every folder, the readme.md file will give you a brief explanation of the fra
 
 - SQL: Joins, Group By, Where, Having, Nested Queries
 
+- SPARQL: 
+
+- Cloud Services
+	* AWS: EC2
+	* GCP: Compute Engine
+	* Azure: Data Warehouses, CosmosDB (NoSQL MongoDB API), Data Factory (Pipelines), Virtual Machines, Azure Machine Learning
+- Unix (bash):
+- Docker: Defining DockerFile, Creating Image, Pull/Push Images on repo
+
 * Power BI: Connection with Azure Data Warehouse, Pivoting, Drill down/Dice, Dashboards
 
 * Tableau: 
 
-* Cloud Services
-	* AWS: EC2
-	* GCP: Compute Engine
-	* Azure: Data Warehouses, CosmosDB (NoSQL MongoDB API), Data Factory (Pipelines), Virtual Machines, Azure Machine Learning
-* Unix (bash):
-* Docker: Defining DockerFile, Creating Image, Pull/Push Images on repo
+- STATA
 
+- QGIS
+
+- Prestashop
 
