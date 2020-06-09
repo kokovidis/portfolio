@@ -14,22 +14,27 @@ In every folder, the readme.md file will give you a brief explanation of the fra
 
 - SQL: Joins, Group By, Where, Having, Nested Queries
 
-- SPARQL: 
-
 - Cloud Services
 	* AWS: EC2
 	* GCP: Compute Engine
 	* Azure: Data Warehouses, CosmosDB (NoSQL MongoDB API), Data Factory (Pipelines), Virtual Machines, Azure Machine Learning
-- Unix (bash):
-- Docker: Defining DockerFile, Creating Image, Pull/Push Images on repo
 
-* Power BI: Connection with Azure Data Warehouse, Pivoting, Drill down/Dice, Dashboards
+- Tableau / Power BI: Connection with Data Warehouses, Pivoting, Drill down/Dice, Choropleth Maps
 
-* Tableau: 
+- Experience with:
+	* Unix (bash): Setting up environment, navigating, script editing
+	* Docker: Defining DockerFile, Creating Image, Pull/Push Images on repo
+	* Git: pull/push, merge, branches
+	* SPARQL: Select queries, nested queries
+	* HTML/CSS
+	* D3.js
+	* Plotly js
+	* LaTeX
+	* Markdown
 
-- STATA
+- E-commerce: Prestashop, Google Analytics
 
-- QGIS
+- Software for Analysis: Stata, SPSS, Excel Pivot Tables, QGIS
 
-- Prestashop
+-  Software for Graphics & Video Edit: Photoshop, InDesign, Premiere, CorelDraw, Final Cut Pro
 
