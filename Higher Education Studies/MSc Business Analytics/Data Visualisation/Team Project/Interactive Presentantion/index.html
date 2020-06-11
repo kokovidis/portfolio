@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!-- TECHNICAL COMMENTS:
+-Importance has been given to work properly on different resolutions; however a desktop screen is suggested
+-The whole body is center aligned / More comments in the style.css
+-Different fonts for different headlines
+-Two types of flexible boxes (for adjusting the javascript plotly elements we had to follow a different approach)
+-We have four types of objects: 1) static images, 2) plotly python to js viz 3) plotly in js viz 4) d3.js plot
+-->
+
+<!-- CONTENT COMMENTS
+-All of our produced graphs (static/no static are included)
+-->
+<html lang="en">
+  <head>
+    <title>Kaggle Survey 2019</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="main">
+      <h1 class="title">Kaggle Survey 2019</h1>
+      <h3>
+        You live for crunching data? Here’s what you need to know about the size
+        of your team!
+      </h3>
+
+      <div>
+        <p>
+          There are two sides regarding the size of the Data Science teams.
+          Small companies are great environment to share ideas, knowledge, be
+          flexible and probably to have better working conditions. On the other
+          hand, big teams may work with bigger projects and there is always the
+          right person for a new task.
+        </p>
+
+        <p>
+          In this analysis, offered to you by Oculart, you will know more about
+          the differences between small and big data teams. For this purpose, we
+          will review the latest Kaggle survey from 11743 professional who work
+          with data. From this survey 5324 responders work in team of 2 to 4
+          members and 6419 responders work to team of more than 4 members. The
+          data were collected in 2019 from users all over the world.
+        </p>
+
+        <p
+          style="border:3px; border-style:solid; border-color:#96A6FF; padding: 1em; font-family:geneva"
+        >
+          Kaggle is a Data Science community where data experts can publish
+          datasets and build machine learning models. It is also offer a
+          platform to collaborate with others and solve Data Science challenges.
+        </p>
+      </div>
+
+      <div class="container">
+        <div class="grid-js">
+          <div>
+            <br /><br /><br /><br />
+            <h3>Profile of responders</h3>
+            <p>
+              In this analysis we explore data experts who are currently
+              employed (we excluded students). The total number of responders is
+              11743, and they come from 57 countries. In summary, they answered
+              34 questions which covered several aspects of their working
+              environment (size of data team, size of the company, skillset that
+              they use), their compensation, as well other personal
+              characteristics (gender, academic background, years of
+              experience).
+            </p>
+          </div>
+          <div>
+            <div id="graphic" class="center"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="chart-row row">
+          <div class="sidebar">
+            <br /><br /><br /><br /><br />
+            <h3>Educational Level</h3>
+            <p>
+              <br />
+              It is true that data teams may come with people from different
+              academic backgrounds. Nowadays, the variety of Massive Open Online
+              Courses (MooC) allows anyone to gain data analytical skills
+              without the need to pursue postgraduate (and probably expensive)
+              studies. From our analysis it seems that still the majority of
+              data professionals have at least a master degree. However, there
+              is no great difference in educational level across small and large
+              teams.
+            </p>
+          </div>
+          <img src="./img/educ.png" width="50%" title="academic back" />
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div class="container">
+        <div class="chart-row row">
+          <div class="sidebar">
+            <br />
+            <h3>Company Size</h3>
+            <p>
+              <br />
+              Does the size of a company relate with the size of a data team?
+              Nowadays, more companies trying to exploit the potentials of their
+              data, however not all of the companies have sufficiently large
+              data teams. This heatmap explores the size of data teams for
+              different size of companies. What is interesting is that large
+              data teams may exist also in small teams (probably the most
+              data-oriented ones). On the contrary, we can still find big
+              companies with relatively small data teams (less than 4 people).
+              In the second case, probably the companies are still developing
+              their data teams, or their industry cannot rely to a large extend
+              on data-driven decisions.
+            </p>
+          </div>
+          <img
+            src="./img/compsize.png"
+            width="50%"
+            height="50%"
+            title="sizecompany"
+          />
+        </div>
+      </div>
+
+      <br /><br />
+      <div class="container">
+        <div class="grid-js">
+          <div>
+            <div id="donut-chart"></div>
+          </div>
+          <div>
+            <br /><br />
+            <h3>Gender</h3>
+            <p>
+              Before we start our exploration, we can have a look in the sex of
+              the responders in different size of teams. In large teams, 84% of
+              responders are male were only 16% of them are female. Small data
+              teams have a very similar gender distribution. It is interesting
+              to notice that in both cases, data-related roles are dominated by
+              males. Hopefully, with the wide support of women in STEM, there
+              will be more females working in data companies in the nearest
+              future.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="chart-row row">
+          <img src="./img/gpaygap.png" width="50%" title="paygapgender" />
+          <div class="sidebar">
+            <h3>Gender Pay Gap</h3>
+            <p>
+              Gender pay gap is now a hot topic. It is widely acknowledged that
+              gender pay gap exists in many industries, so how about data
+              related roles? As we can see in the plot, female data specialists
+              tend to have a lower salary compared to male in both team size
+              groups; however, this distance gets wider for respondents in large
+              groups. It is clear that the gender pay gap it is greater in large
+              teams, indicating that gender inequality might be more widespread
+              in large data teams.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div><br /><br /><br /><br /></div>
+
+      <div class="container">
+        <div class="chart-row row">
+          <div class="sidebar">
+            <br /><br /><br /><br />
+            <h3>Working Experience in ML</h3>
+            <p>
+              Many people might be also interested in the actual pay gap across
+              as their career grows. In general, the median salary increases as
+              years of working experience in Machine Learning increase in both
+              groups. Moreover, the median salary in large teams outperforms
+              that in small teams (i.e. around 10.000$ pay gap in 4 years of
+              experience and 27.500$ pay gap in more than 20 years of
+              experience).
+            </p>
+          </div>
+          <img src="./img/salaryexp.png" width="60%" title="linesalarygap" />
+        </div>
+      </div>
+
+      <div>
+        <h3>Visualisation Tools</h3>
+        <p>
+          Visualisation tools play a pivotal role into delivering knowledge to a
+          company.
+        </p>
+        <p>
+          The following plot explores employees' preferences in different
+          visualisation tools. Both groups have almost the same preference of
+          visualization tools. Moreover, it seems that Matplotlib, Seaborn
+          (Python) and ggplot2 (R) are the top three visualization tools used by
+          experts.
+        </p>
+      </div>
+
+      <img
+        src="./img/viztools.png"
+        width="50%"
+        title="viztools"
+        class="center"
+      />
+
+      <br /><br /><br />
+
+      <div class="container">
+        <div class="grid-plotly-python">
+          <div>
+            <div
+              id="f69da72b-f1b9-4858-8306-d1f14a5c9016"
+              class="plotly-graph-div"
+              style="height:450px; width:600px;"
+            ></div>
+          </div>
+          <div>
+            <br /><br /><br />
+            <h3>Cloud Products</h3>
+            <p>
+              But what about cloud products? Below we can find the percent of
+              experts who use different cloud frameworks in small and large
+              teams. Overall, it seems that Google BigQuery it’s the most
+              popular framework for both small and large teams (7.5%). Large
+              teams show in general a greater preference to many of the cloud
+              products. However, Google Cloud Dataflow and Microsoft Analysis
+              Services are more popular on small teams. Finally, AWS Athena, AWS
+              Kinesis and Google Cloud Pub/Sub have nearly the same popularity
+              for both sizes of team.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div>
+        <h3>Percent of Large Teams in different Countries</h3>
+        <p>
+          The interactive map below depicts the percentage of experts who work
+          in large teams across different countries. The closer it is to red,
+          the higher the percentage of respondents. Readers can also get the
+          actual percentage of experts by hovering over every country.
+        </p>
+      </div>
+      <div align="center">
+        <div
+          id="bc2f96aa-7743-4626-b4e9-d5edf13fe5aa"
+          class="plotly-graph-div"
+          style="height:600px; width:1000px;"
+        ></div>
+      </div>
+      <p>
+        With a more thorough look, we notice that over 60% of data specialists
+        from the United States Singapore, India and some European countries work
+        in large teams. On the other hand, countries such as Mexico, Thailand,
+        Turkey and Austria, work mostly in small teams.
+      </p>
+
+      <div>
+        <h3>Country Spending</h3>
+        <p>
+          The following comparative interactive visualisation illustrates, for
+          large and small teams, the median salary in USD and the average amount
+          of money spent on Cloud Services per country. The different colors of
+          observations refer to countries of different region (namely North
+          America, South America, Asia, Europe, Africa) Readers, when hover over
+          a country, can the actual values (median salary on the left and the
+          amount of money spent on the cloud service on the right). Readers can
+          also use zoom get closely related countries.
+        </p>
+      </div>
+      <div align="center">
+        <div
+          id="ba43bbb4-e8cc-4082-8d46-44fbd304ea86"
+          class="plotly-graph-div"
+          style="height:500px; width:1000px;"
+        ></div>
+      </div>
+      <p>
+        From the above comparative plot we observe that the large teams have a
+        wider range of median salary and cloud service spending. On the other
+        hand, the small teams have more concentrated on the salaries (most of
+        them are below 40.000 USD) and the expenditure on cloud services is
+        generally small. In our case, United States is the country with the
+        highest median salary regardless of team size. However, the highest
+        spending in cloud service spending from small-sized teams can be found
+        in Israel.
+      </p>
+    </div>
+
+    <!-- CLOSING class="main" -->
+
+    <!-- LOCAL SCRIPTS -->
+
+    <script
+      type="text/javascript"
+      src="./js/plotly-python-to-javascript.js"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="./js/plotly-javascript.js"
+      defer
+    ></script>
+    <script type="text/javascript" src="./js/d3-barchart.js" defer></script>
+
+    <!--                   <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js'></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+              -->
+
+    <!-- EXTERNAL SCRIPTS -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+    <!--             <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js'></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+              -->
+  </body>
+</html>
