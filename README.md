@@ -19,7 +19,8 @@ In every folder, the readme.md file will give you a brief explanation of the fra
 	* GCP: Compute Engine
 	* Azure: Data Warehouses, CosmosDB (NoSQL MongoDB API), Data Factory (Pipelines), Virtual Machines, Azure Machine Learning
 
-- Tableau / Power BI: Connection with Data Warehouses, Pivoting, Drill down/Dice, Choropleth Maps
+- Tableau / Power BI: Connection with Data Warehouses, Pivoting, Drill down/Dice, Visualisations & Stories, Analysis functionalities, Choropleth Maps
+ * A thorough guide for creating Choropleth Maps in Tableau can be found here (in Greek): [youtu.be/_KmL6z35KB0]() 	
 
 - Experience with:
 	* Unix (bash): Setting up environment, navigating, script editing
@@ -34,7 +35,7 @@ In every folder, the readme.md file will give you a brief explanation of the fra
 
 - E-commerce: Prestashop, Google Analytics
 
-- Software for Analysis: Stata, SPSS, Excel Pivot Tables, QGIS
+- Software for Analysis: Stata, SPSS, Excel Solver, Excel Pivot Tables, QGIS
 
 -  Software for Graphics & Video Edit: Photoshop, InDesign, Premiere, CorelDraw, Final Cut Pro
 
